@@ -4,10 +4,15 @@ project:
   execute-dir: project
 
 sources:
-  affected_zones: ./input/transit_zones_affected.csv
-  base: D:\jan_zill\EET_Phase11C\eet_inconsistency_investigation\data\output\output-base-eet #./input/example/base
-  build: D:\jan_zill\EET_Phase11C\eet_inconsistency_investigation\data\output\output-transit-eet #./input/example/build
-  how_method: all # Employment -> any, Transit -> all
+  base: D:\jan_zill\EET_Phase11C\eet_inconsistency_investigation\data\output\output-base-eet
+  ## transit
+  # affected_zones: D:\jan_zill\EET_Phase11C\eet_inconsistency_investigation\data\inputs\transit_corridor\transit_zones_affected.csv
+  # build: D:\jan_zill\EET_Phase11C\eet_inconsistency_investigation\data\output\output-transit-eet
+  # how_method: all # Employment -> any, Transit -> all
+  ## employment
+  affected_zones: D:\jan_zill\EET_Phase11C\eet_inconsistency_investigation\data\inputs\employment\employment_zones_affected.csv
+  build: D:\jan_zill\EET_Phase11C\eet_inconsistency_investigation\data\output\output-employment-eet
+  how_method: any # Employment -> any, Transit -> all
 
   notebooks:
   - long_term.ipynb
