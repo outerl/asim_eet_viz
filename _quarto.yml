@@ -5,8 +5,8 @@ project:
 
 sources:
   affected_zones: ./input/transit_zones_affected.csv
-  base: ./input/example/base
-  build: ./input/example/build
+  base: D:\jan_zill\EET_Phase11C\eet_inconsistency_investigation\data\output\output-base-eet #./input/example/base
+  build: D:\jan_zill\EET_Phase11C\eet_inconsistency_investigation\data\output\output-transit-eet #./input/example/build
   how_method: all # Employment -> any, Transit -> all
 
   notebooks:
