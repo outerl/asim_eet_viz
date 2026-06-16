@@ -50,6 +50,19 @@ def _normalize_column_selection(columns: Any) -> list[Any] | None:
     return list(columns)
 
 
+def _matches_existing_index(df: pd.DataFrame, index_col: Any) -> bool:
+    requested_index = _normalize_column_selection(index_col)
+    if requested_index is None:
+        return False
+
+    if isinstance(df.index, pd.MultiIndex):
+        current_index = list(df.index.names)
+    else:
+        current_index = [df.index.name]
+
+    return current_index == requested_index
+
+
 def _resolve_input_path(base_dir: str | Path, file_name: str) -> Path:
     path = Path(base_dir) / file_name
     suffix = path.suffix.lower()
@@ -99,7 +112,7 @@ def read_input_table(base_dir: str | Path, file_name: str, **read_kwargs: Any) -
         parquet_kwargs["columns"] = selected_columns
 
     df = pd.read_parquet(path, **parquet_kwargs)
-    if index_col is not None:
+    if index_col is not None and not _matches_existing_index(df, index_col):
         df = df.set_index(index_col)
 
     return df
