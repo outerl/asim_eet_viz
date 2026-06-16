@@ -4,6 +4,8 @@ import logging
 from pathlib import Path
 from typing import Any, Optional, Callable
 
+import yaml
+
 import numpy as np
 import pandas as pd
 import plotly
@@ -12,6 +14,30 @@ from plotly.subplots import make_subplots
 
 
 logger = logging.getLogger(__name__)
+
+
+def find_project_file(file_name: str, start: str | Path | None = None) -> Path:
+    """Return the nearest ancestor file matching ``file_name`` from ``start`` or cwd."""
+
+    search_root = Path.cwd() if start is None else Path(start)
+    search_root = search_root.resolve()
+
+    for directory in (search_root, *search_root.parents):
+        candidate = directory / file_name
+        if candidate.exists():
+            return candidate
+
+    raise FileNotFoundError(
+        f"Could not find '{file_name}' from '{search_root}' or any parent directory."
+    )
+
+
+def load_project_config(file_name: str = "_quarto.yml", start: str | Path | None = None) -> dict:
+    """Load the nearest project config so notebooks work from either the project or notebook dir."""
+
+    config_path = find_project_file(file_name, start=start)
+    with config_path.open(encoding="utf-8") as stream:
+        return yaml.safe_load(stream)
 
 
 def _normalize_column_selection(columns: Any) -> list[Any] | None:

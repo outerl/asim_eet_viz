@@ -36,6 +36,10 @@ def run_notebooks(
     affected_zones,
 ):
 
+    notebook_execution_resources = {
+        "metadata": {"path": os.path.abspath("notebooks")}
+    }
+
     for filename in notebooks:
 
         print(f"Executing subset {zone_set} notebook {filename}...")
@@ -68,7 +72,7 @@ def run_notebooks(
 
         # execute it
         ep = ExecutePreprocessor(timeout=1000, kernel_name="python3")
-        ep.preprocess(nb_in)
+        ep.preprocess(nb_in, resources=notebook_execution_resources)
 
         # strip out all metadata that causes issues for Quarto
         cmp = ClearMetadataPreprocessor(timeout=1000, kernel_name="python3")

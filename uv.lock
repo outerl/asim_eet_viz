@@ -97,7 +97,9 @@ name = "asim-eet-viz"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
+    { name = "ipykernel" },
     { name = "jupyterlab" },
+    { name = "nbparameterise" },
     { name = "openmatrix" },
     { name = "openpyxl" },
     { name = "pandas" },
@@ -109,7 +111,9 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "ipykernel", specifier = ">=7.3.0" },
     { name = "jupyterlab" },
+    { name = "nbparameterise", specifier = ">=0.6.1" },
     { name = "openmatrix" },
     { name = "openpyxl" },
     { name = "pandas", specifier = ">=2.3.0" },
@@ -117,6 +121,15 @@ requires-dist = [
     { name = "polars", specifier = ">=1.31.0" },
     { name = "polars-lts-cpu", specifier = ">=1.31.0" },
     { name = "pyarrow", specifier = ">=20.0.0" },
+]
+
+[[package]]
+name = "astcheck"
+version = "0.4.0"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/d4/47/7b70dbf934043b983b2dd7cc87e9df8ca562ffcbb0798f9de7fcdb8561ff/astcheck-0.4.0.tar.gz", hash = "sha256:e979b7450aff2b9ddc166f0533141d8a3b13ce0dfb923efa76fe9ed7c8747844", size = 13767, upload-time = "2024-01-29T12:02:16.672Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/de/05/3ec7e5edcf634bd826bd8463f6a7a3f0fa8202aa21b67809c97e61c49b8c/astcheck-0.4.0-py3-none-any.whl", hash = "sha256:9b21ed9943cf4f87a5d2092b8550c8314537d6fa43143d21d517c20a64aa7d56", size = 5019, upload-time = "2024-01-29T12:02:15.253Z" },
 ]
 
 [[package]]
@@ -1008,6 +1021,19 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/6d/fd/91545e604bc3dad7dca9ed03284086039b294c6b3d75c0d2fa45f9e9caf3/nbformat-5.10.4.tar.gz", hash = "sha256:322168b14f937a5d11362988ecac2a4952d3d8e3a2cbeb2319584631226d5b3a", size = 142749, upload-time = "2024-04-04T11:20:37.371Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/a9/82/0340caa499416c78e5d8f5f05947ae4bc3cba53c9f038ab6e9ed964e22f1/nbformat-5.10.4-py3-none-any.whl", hash = "sha256:3b48d6c8fbca4b299bf3982ea7db1af21580e4fec269ad087b9e81588891200b", size = 78454, upload-time = "2024-04-04T11:20:34.895Z" },
+]
+
+[[package]]
+name = "nbparameterise"
+version = "0.6.1"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "astcheck" },
+    { name = "nbformat" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/d2/bc/f2913ce78f40ade2eff4aacb12f863f0e174241a90838666047cce8a97d3/nbparameterise-0.6.1.tar.gz", hash = "sha256:1b138747635231489844cded4d80ae3eb8b4c41e566242ab310b55e88c2a2a27", size = 14048, upload-time = "2024-05-15T12:48:45.283Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/0a/38/9d45b7fdfd325f9fa1d548863307a9d441ef1cef6d7b6277101ca59aa907/nbparameterise-0.6.1-py3-none-any.whl", hash = "sha256:2ed563fdd3fc97adff0239381e19af9d37871d0da11383ae7c405c48e575a2b8", size = 7821, upload-time = "2024-05-15T12:48:43.196Z" },
 ]
 
 [[package]]

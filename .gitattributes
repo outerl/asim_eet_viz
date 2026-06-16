@@ -1,0 +1,12 @@
+# Normalize text files to LF across platforms.
+* text=auto eol=lf
+
+# Keep common binary assets out of end-of-line normalization.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.zip binary
+*.gz binary
+*.7z binary

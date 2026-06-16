@@ -1,6 +1,7 @@
 project:
   type: book
   output-dir: "output"
+  execute-dir: project
 
 sources:
   affected_zones: ./input/transit_zones_affected.csv
@@ -17,7 +18,8 @@ sources:
 
 book:
   title: "ActivitySim Base-Build Comparison Visualization"
-  repo-url: https://github.com/ActivitySim/asim_eet_viz
+  repo-url: https://github.com/outerl/asim_eet_viz
+  repo-branch: jzill/phase11c
   search: false
 
   chapters:

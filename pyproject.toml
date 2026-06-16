@@ -13,4 +13,6 @@ dependencies = [
     "openmatrix",
     "plotly",
     "jupyterlab",
+    "ipykernel>=7.3.0",
+    "nbparameterise>=0.6.1",
 ]
