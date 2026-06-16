@@ -10,4 +10,6 @@ dependencies = [
     "polars>=1.31.0",
     "polars-lts-cpu>=1.31.0",
     "pyarrow>=20.0.0",
+    "openpyxl",
+    "openmatrix",
 ]
