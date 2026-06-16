@@ -2,7 +2,7 @@
 
 import logging
 from pathlib import Path
-from typing import Optional, Callable
+from typing import Any, Optional, Callable
 
 import numpy as np
 import pandas as pd
@@ -12,6 +12,71 @@ from plotly.subplots import make_subplots
 
 
 logger = logging.getLogger(__name__)
+
+
+def _normalize_column_selection(columns: Any) -> list[Any] | None:
+    if columns is None:
+        return None
+
+    if isinstance(columns, (str, int)):
+        return [columns]
+
+    return list(columns)
+
+
+def _resolve_input_path(base_dir: str | Path, file_name: str) -> Path:
+    path = Path(base_dir) / file_name
+    suffix = path.suffix.lower()
+
+    if suffix in {".csv", ".parquet"}:
+        return path
+
+    for candidate in (path.with_suffix(".parquet"), path.with_suffix(".csv")):
+        if candidate.exists():
+            return candidate
+
+    raise FileNotFoundError(
+        f"Could not find '{file_name}' as either a parquet or csv file under '{base_dir}'."
+    )
+
+
+def read_input_table(base_dir: str | Path, file_name: str, **read_kwargs: Any) -> pd.DataFrame:
+    """Read a notebook input table from parquet or csv using a csv-compatible API.
+
+    If ``file_name`` has no extension, parquet is preferred when both parquet and csv
+    versions exist.
+    """
+
+    path = _resolve_input_path(base_dir, file_name)
+    suffix = path.suffix.lower()
+
+    if suffix == ".csv":
+        return pd.read_csv(path, **read_kwargs)
+
+    parquet_kwargs = dict(read_kwargs)
+    index_col = parquet_kwargs.pop("index_col", None)
+    usecols = parquet_kwargs.pop("usecols", None)
+    columns = parquet_kwargs.pop("columns", None)
+
+    if usecols is not None and columns is not None and list(usecols) != list(columns):
+        raise ValueError("Pass either matching 'usecols' and 'columns' values, or only one of them.")
+
+    selected_columns = _normalize_column_selection(columns)
+    if selected_columns is None:
+        selected_columns = _normalize_column_selection(usecols)
+
+    if selected_columns is not None and index_col is not None:
+        index_columns = _normalize_column_selection(index_col)
+        selected_columns = list(dict.fromkeys([*selected_columns, *index_columns]))
+
+    if selected_columns is not None:
+        parquet_kwargs["columns"] = selected_columns
+
+    df = pd.read_parquet(path, **parquet_kwargs)
+    if index_col is not None:
+        df = df.set_index(index_col)
+
+    return df
 
 
 COLOR_MAP = {
