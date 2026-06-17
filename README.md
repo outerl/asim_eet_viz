@@ -33,7 +33,7 @@ for your OS (at minimum `quarto`), then run  (or `python -m pip install -e .`).
 
 ## Output Compilation
 To build the output website, run the `compile.py` script
-(`conda run -n asimviz python`), which
+(`conda run -n asimviz python compile.py`), which
 will pull a list of Jupyter notebooks from `_quarto.yml` to
 execute. The outputs from these notebooks will be compiled
 into the new website, found in the `output` directory.
