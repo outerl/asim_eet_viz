@@ -26,14 +26,14 @@ Recommended setup:
 	`conda env create -f environment.yml`
 	`conda activate asimviz`
 2. Install Python dependencies from `pyproject.toml`:
-	`uv sync` or `python -m pip install -e .`
+	`python -m pip install -e .`
 
 If you prefer not to use Conda, install the non-Python tools manually
-for your OS (at minimum `quarto`), then run  (or `python -m pip install -e .`).
+for your OS, then run `uv sync`. If you only want to run the notebooks,
+non-Python tools can be skipped completely.
 
 ## Output Compilation
-To build the output website, run the `compile.py` script
-(`conda run -n asimviz python compile.py`), which
+To build the output website, run the `compile.py` script, which
 will pull a list of Jupyter notebooks from `_quarto.yml` to
 execute. The outputs from these notebooks will be compiled
 into the new website, found in the `output` directory.
