@@ -1,18 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "asim-eet-viz"
 version = "0.1.0"
-description = "Add your description here"
+description = "Base-vs-build ActivitySim visualization notebooks and compilation tooling"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
-    "pandas>=2.3.0",
-    "polars>=1.31.0",
-    "polars-lts-cpu>=1.31.0",
-    "pyarrow>=20.0.0",
+    "ipykernel>=7.3.0",
+    "jupyterlab>=4.0.0",
+    "nbconvert>=7.16.0",
+    "nbformat>=5.10.0",
+    "nbparameterise>=0.6.1",
+    "numpy>=2.0.0",
     "openpyxl",
     "openmatrix",
-    "plotly",
-    "jupyterlab",
-    "ipykernel>=7.3.0",
-    "nbparameterise>=0.6.1",
+    "pandas>=2.2.0",
+    "plotly>=6.0.0",
+    "polars>=1.31.0",
+    "pyarrow>=20.0.0",
+    "pyyaml>=6.0.0",
 ]
+
+[tool.setuptools]
+packages = []
+py-modules = []

@@ -6,6 +6,8 @@ output/
 *.zip
 **/.ipynb_checkpoints/
 output_*/
+.venv/
+asim_eet_viz.egg-info/
 
 # tour mode choice sameness investigation
 .DS_Store

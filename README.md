@@ -17,12 +17,23 @@ Modify the `sources.base` and `sources.build` settings to
 select a different data source.
 
 ## Installation
-To install the appropriate dependencies for creating the
-output visualizations, install the dependencies in the
-`environment.yml` file using `conda env create -n {environment_name}`
+This repository separates dependencies as follows:
+- Python dependencies are declared in `pyproject.toml`.
+- Non-Python tooling (Quarto/Pandoc/etc.) is declared in `environment.yml`.
+
+Recommended setup:
+1. Create and activate the Conda environment for non-Python tools:
+	`conda env create -f environment.yml`
+	`conda activate asimviz`
+2. Install Python dependencies from `pyproject.toml`:
+	`uv sync` or `python -m pip install -e .`
+
+If you prefer not to use Conda, install the non-Python tools manually
+for your OS (at minimum `quarto`), then run  (or `python -m pip install -e .`).
 
 ## Output Compilation
-To build the output website, run the `compile.py` script, which
+To build the output website, run the `compile.py` script
+(`conda run -n asimviz python`), which
 will pull a list of Jupyter notebooks from `_quarto.yml` to
 execute. The outputs from these notebooks will be compiled
 into the new website, found in the `output` directory.
